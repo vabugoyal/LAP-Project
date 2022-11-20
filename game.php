@@ -28,6 +28,7 @@ elseif(!isset($_SESSION["connect"])) {
 
 <?php   }
 else {
+  if ($_SESSION['ques'] == 0) {$_SESSION['ques'] += 1;}
     $ques = $_SESSION['ques'];
 
    // $sender_a = "SELECT `sender_address` FROM `email_data` WHERE `S.No.` = '$ques'";
@@ -72,7 +73,7 @@ else {
     <head>
     <title>Phishing Email Detection Game</title>
     <!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous"> -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
@@ -284,31 +285,42 @@ h2 {
  margin-left: 80px;
  margin-right: 50px;
 }
+.col-md-12 {
+  padding : 0;
+  margin : 0;
+}
         }
     </style>
         
     </head>
   <body>
     <!-- BODY -->
-    <div class="container-fluid">
+  <div class="container-fluid">
           <?php
           if ($_SESSION["hintsLeft"] > 0) {
           ?>
           <!-- add hint button here -->
           <p> HintsLeft : 
             <?php
-            echo $_SESSION["hintsLeft"];
             if (array_key_exists("decreaseKey", $_POST))
             {
+              $_SESSION["hintTaken"] = 1;
               $_SESSION["hintsLeft"] -= 1;
             }
+            echo $_SESSION["hintsLeft"];
             ?>
           </p>
           <form method="post">
           <button type="submit" class="btn btn-success" value="decrease" name="decreaseKey" onclick="func()">HINT</button>
+          <?php if ($_SESSION["hintTaken"]) { ?>
+          <div id="Foo" style="display:block">
+          <?php } else { ?>
           <div id="Foo" style="display:none">
+          <?php } ?>
+
+          
               <?php
-              if ($phs) {
+              if ($_SESSION['actual'] === "1") {
                 ?>
                 <h6> This is a phishing mail </h6>
                 <?php
@@ -341,7 +353,7 @@ h2 {
 
     <div class="container-fluid">
         <!--    messages--><div class="row">
-        <div class="col-md-12"><div class="jumbotron">
+        <div class="col-md-12" style="margin:0;padding:0"><div class="jumbotron">
           <div class="row">
 <div class = "row">     
 <div class="splitl left bo col-lg-7">
@@ -656,14 +668,12 @@ if (quesChanged == "false"){
 
 
 function func() {
-
   document.getElementById("Foo").style.display = "block";
 }
 
 </script> 
    
-    <!-- FOOTER without any links -->
-    <?php include 'footer.php';?>
+
     
 </body>
 </html>

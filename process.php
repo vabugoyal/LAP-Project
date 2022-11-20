@@ -174,6 +174,8 @@ else{
 	
   if($qus < 4) {
 		$_SESSION['ques'] += 1;
+		$_SESSION['hintTaken'] = 0;
+
 		 header('Location: ./game.php');
        // header('Location: ./feedback.php');
       // echo "<a href="feedback.php"></a>";

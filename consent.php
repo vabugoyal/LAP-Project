@@ -2,6 +2,7 @@
     session_start();
     error_reporting(0);
     $_SESSION["hintsLeft"] = 3;
+    $_SESSION["hintTaken"] = 0;
     include 'config.php';
     //$conn = new mysqli("localhost", "acs_de_gam", "acslab","acs_draft");
     //$conn = new mysqli("localhost", "root", "","acs_draft1");
