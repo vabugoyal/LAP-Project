@@ -65,6 +65,10 @@ else {
       $rowcov=mysqli_fetch_array($resultcov,MYSQLI_ASSOC);
     $_SESSION['cover'] = $rowcov["cover"];
   
+    $hint = "SELECT `Hint` FROM `email_data` WHERE `S.No.` = '$ques'";
+    $resulthint=mysqli_query($conn, $hint);
+    $rowhint=mysqli_fetch_array($resulthint,MYSQLI_ASSOC);
+    $_SESSION['hint'] = $rowhint["Hint"];
   
 ?>
 <!-- main game page starts here -->
@@ -311,7 +315,7 @@ h2 {
             ?>
           </p>
           <form method="post">
-          <button type="submit" class="btn btn-success" value="decrease" name="decreaseKey" onclick="func()">HINT</button>
+          <button type="submit" class="btn btn-danger" value="decrease" name="decreaseKey" onclick="func()" style="background-color:red;">HINT</button>
           <?php if ($_SESSION["hintTaken"]) { ?>
           <div id="Foo" style="display:block">
           <?php } else { ?>
@@ -320,22 +324,17 @@ h2 {
 
           
               <?php
-              if ($_SESSION['actual'] === "1") {
-                ?>
-                <h6> This is a phishing mail </h6>
-                <?php
-                } else {
-                  ?>
-                  <h6> This is not a phishing mail </h6>
-                  <?php
-                }
-                ?>
+              echo $_SESSION['hint'];
+              ?>
           </div>
 
           </form>
           
           <?php
-          }?>
+          }
+          echo "Current Score: " . $_SESSION['reward'] . "\n";
+          ?>
+
       </div>
 
 

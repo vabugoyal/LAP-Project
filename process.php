@@ -120,35 +120,35 @@ else{
 	if(($_SESSION['actual'] == '1' && $answer == 'phishing')||($_SESSION['actual'] == 1 && $answer == 'phishing')) {
 		$_SESSION['act'] == "Phishing";
 		$dir = 1;
-		$_SESSION['reward'] +=  0.02 * abs(50 - $chkque)*$dir;
+		$_SESSION['reward'] +=  0.02 * abs(50 - $chkque)*$dir - (3 - $_SESSION['hintsLeft']) * 0.1*$_SESSION["hintTaken"];
 		$_SESSION['detect'] = "Correct";
 	}
 	else if(($_SESSION['actual'] == '1' && $answer == 'genuine')||($_SESSION['actual'] == 1 && $answer == 'genuine')) {
 		$_SESSION['act'] == "Phishing";
         $dir = -1;
-		$_SESSION['reward'] +=  0.02 * abs(50 - $chkque)*$dir;		
+		$_SESSION['reward'] +=  0.02 * abs(50 - $chkque)*$dir- (3 - $_SESSION['hintsLeft']) * 0.1*$_SESSION["hintTaken"];		
 		$_SESSION['detect'] = "Wrong";
 	}
 	else if(($_SESSION['actual'] == '0' && $answer == 'phishing')||($_SESSION['actual'] == 0 && $answer == 'phishing')){
 		$_SESSION['act'] == "Genuine";
 		$dir = -1;
-		$_SESSION['reward'] +=  0.02 * abs(50 - $chkque)*$dir;
+		$_SESSION['reward'] +=  0.02 * abs(50 - $chkque)*$dir- (3 - $_SESSION['hintsLeft']) * 0.1*$_SESSION["hintTaken"];
 		$_SESSION['detect'] = "Wrong";
 	}
 	else if(($_SESSION['actual'] == '0' && $answer == 'genuine')||($_SESSION['actual'] == 0 && $answer == 'genuine')){
 		$_SESSION['act'] == "Genuine";	
 		$dir = 1;
-		$_SESSION['reward'] +=  0.02 * abs(50 - $chkque)*$dir;
+		$_SESSION['reward'] +=  0.02 * abs(50 - $chkque)*$dir- (3 - $_SESSION['hintsLeft']) * 0.1*$_SESSION["hintTaken"];
 		$_SESSION['detect'] = "Correct";
 	}
 	elseif(($_SESSION['actual'] == '0' && $answer == 'neutral')||($_SESSION['actual'] == 0 && $answer == 'neutral')){
 	    $_SESSION['act'] == "Genuine";	
-		$_SESSION['reward'] += 0.02 * (50 - $chkque);
+		$_SESSION['reward'] += 0.02 * (50 - $chkque)- (3 - $_SESSION['hintsLeft']) * 0.1*$_SESSION["hintTaken"];
 		$_SESSION['detect'] = "Neutral";
 	}
 		elseif(($_SESSION['actual'] == '1' && $answer == 'neutral')||($_SESSION['actual'] == 1 && $answer == 'neutral')){
 	    $_SESSION['act'] == "Phishing";	
-		$_SESSION['reward'] += 0.02 * (50 - $chkque);
+		$_SESSION['reward'] += 0.02 * (50 - $chkque)- (3 - $_SESSION['hintsLeft']) * 0.1*$_SESSION["hintTaken"];
 		$_SESSION['detect'] = "Neutral";
 	}
 	//$factor1 = $_SESSION['factor1'];
@@ -172,7 +172,7 @@ else{
 
 	$_SESSION['process'] = 'true';
 	
-  if($qus < 4) {
+  if($qus < 5) {
 		$_SESSION['ques'] += 1;
 		$_SESSION['hintTaken'] = 0;
 
