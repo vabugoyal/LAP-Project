@@ -101,6 +101,7 @@ It also adds a flag `impress.supported` that can be used in JavaScript to check 
 
 #### CHANGELOG
 
+
 * configuration options on `#impress` element: `data-perspective` (in px, defaults so 1000),
   `data-transition-duration` (in ms, defaults to 1000)
 * automatic scaling to fit window size, with configuration options:  `data-width` (in px, defaults to 1024),
@@ -146,6 +147,7 @@ users](http://twitter.com/n_adam_stanley/status/178188611827679233) [are quite q
 #### CHANGELOG
 
 * minor CSS 3D fixes
+* CSS button fixes
 * basic API to control the presentation flow from JavaScript
 * touch event support
 * basic support for iPad (iOS 5 and iOS 4 with polyfills) and Blackberry Playbook
